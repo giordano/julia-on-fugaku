@@ -30,8 +30,10 @@ function benchmark()
     # Warmup
     pingpong(T, 1, 10)
 
-    file = open(joinpath(@__DIR__, "julia.csv"), "w")
-    println(file, "# size (bytes),time (seconds),throughput (MB/s)")
+    if rank == 0
+        file = open(joinpath(@__DIR__, "julia.csv"), "w")
+        println(file, "# size (bytes),time (seconds),throughput (MB/s)")
+    end
     result = Tuple{Int,Float64}[]
 
     for s in [-Inf, (0:1:27)...]
@@ -47,7 +49,9 @@ function benchmark()
         end
     end
 
-    close(file)
+    if rank == 0
+        close(file)
+    end
 end
 
 benchmark()
