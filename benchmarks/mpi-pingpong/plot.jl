@@ -3,6 +3,7 @@ using Plots, DelimitedFiles
 function plot_bench()
     julia = readdlm(joinpath(@__DIR__, "julia.csv"), ',', Float64; skipstart=1)
     riken = readdlm(joinpath(@__DIR__, "riken.csv"), ',', Float64; skipstart=3)
+    imb = readdlm(joinpath(@__DIR__, "intel-mpi-benchmarks.csv"), ',', Float64; skipstart=1)
 
     p = plot(;
              title = "Communication time of MPI PingPong",
@@ -16,6 +17,7 @@ function plot_bench()
              )
     plot!(p, julia[:, 1], julia[:, 2]; label="MPI.jl", marker=:auto, markersize=3)
     plot!(p, riken[:, 1], riken[:, 2]; label="Riken-CCS", marker=:auto, markersize=3)
+    plot!(p, imb[:, 1], imb[:, 2]; label="Intel MPI Benchmarks", marker=:auto, markersize=3)
     savefig(joinpath(@__DIR__, "ping-pong-time.pdf"))
 
     p = plot(;
@@ -29,6 +31,7 @@ function plot_bench()
              )
     plot!(p, julia[:, 1], julia[:, 3]; label="MPI.jl", marker=:auto, markersize=3)
     plot!(p, riken[:, 1], riken[:, 3]; label="Riken-CCS", marker=:auto, markersize=3)
+    plot!(p, imb[:, 1], imb[:, 3]; label="Intel MPI Benchmarks", marker=:auto, markersize=3)
     savefig(joinpath(@__DIR__, "ping-pong-throughput.pdf"))
 
 end
