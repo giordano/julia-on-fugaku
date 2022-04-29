@@ -34,7 +34,7 @@ function benchmark()
     println(file, "# size (bytes),time (seconds),throughput (MB/s)")
     result = Tuple{Int,Float64}[]
 
-    for s in [-Inf, 0:1:22...]
+    for s in [-Inf, (0:1:27)...]
         size = Int(exp2(s))
         time = pingpong(T, size, 400)
         if rank == 0
