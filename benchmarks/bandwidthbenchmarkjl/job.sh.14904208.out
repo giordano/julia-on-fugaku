@@ -1,0 +1,220 @@
+Threading enabled, using 48 (of 48) Julia threads
+Total allocated datasize: 3840.0 MB
+┌──────────┬─────────────┬────────────────┬────────────┬────────────┬────────────┐
+│ Function │ Rate (MB/s) │ Rate (MFlop/s) │   Avg time │   Min time │   Max time │
+│   String │     Float64 │        Float64 │    Float64 │    Float64 │    Float64 │
+├──────────┼─────────────┼────────────────┼────────────┼────────────┼────────────┤
+│     Init │    119200.0 │            0.0 │ 0.00807906 │ 0.00805369 │ 0.00810125 │
+│     Copy │   1.92422e5 │            0.0 │  0.0101777 │ 0.00997804 │  0.0102282 │
+│   Update │   2.46128e5 │        15383.0 │  0.0080371 │ 0.00780082 │ 0.00808514 │
+│    Triad │   2.33865e5 │        19488.7 │  0.0124306 │  0.0123148 │  0.0124733 │
+│    Daxpy │   2.49827e5 │        20819.0 │  0.0115425 │   0.011528 │  0.0115557 │
+│   STriad │   2.45457e5 │        15341.1 │  0.0156704 │  0.0156443 │  0.0157096 │
+│   SDaxpy │    2.8169e5 │        17605.6 │  0.0136683 │   0.013632 │  0.0137256 │
+└──────────┴─────────────┴────────────────┴────────────┴────────────┴────────────┘
+1 Thread(s): SDaxpy Bandwidth (MB/s) is 57259.34
+2 Thread(s): SDaxpy Bandwidth (MB/s) is 90968.72
+3 Thread(s): SDaxpy Bandwidth (MB/s) is 116583.58
+4 Thread(s): SDaxpy Bandwidth (MB/s) is 132089.54
+5 Thread(s): SDaxpy Bandwidth (MB/s) is 140071.31
+6 Thread(s): SDaxpy Bandwidth (MB/s) is 144309.74
+7 Thread(s): SDaxpy Bandwidth (MB/s) is 148202.84
+8 Thread(s): SDaxpy Bandwidth (MB/s) is 144348.36
+9 Thread(s): SDaxpy Bandwidth (MB/s) is 144083.89
+10 Thread(s): SDaxpy Bandwidth (MB/s) is 144164.97
+11 Thread(s): SDaxpy Bandwidth (MB/s) is 144041.36
+12 Thread(s): SDaxpy Bandwidth (MB/s) is 144628.84
+13 Thread(s): SDaxpy Bandwidth (MB/s) is 152785.31
+14 Thread(s): SDaxpy Bandwidth (MB/s) is 161116.58
+15 Thread(s): SDaxpy Bandwidth (MB/s) is 169222.87
+16 Thread(s): SDaxpy Bandwidth (MB/s) is 176578.17
+17 Thread(s): SDaxpy Bandwidth (MB/s) is 183164.89
+18 Thread(s): SDaxpy Bandwidth (MB/s) is 189777.62
+19 Thread(s): SDaxpy Bandwidth (MB/s) is 196681.79
+20 Thread(s): SDaxpy Bandwidth (MB/s) is 202734.01
+21 Thread(s): SDaxpy Bandwidth (MB/s) is 209149.79
+22 Thread(s): SDaxpy Bandwidth (MB/s) is 214622.38
+23 Thread(s): SDaxpy Bandwidth (MB/s) is 220156.71
+24 Thread(s): SDaxpy Bandwidth (MB/s) is 225725.75
+25 Thread(s): SDaxpy Bandwidth (MB/s) is 230902.51
+26 Thread(s): SDaxpy Bandwidth (MB/s) is 235353.0
+27 Thread(s): SDaxpy Bandwidth (MB/s) is 238296.06
+28 Thread(s): SDaxpy Bandwidth (MB/s) is 244694.95
+29 Thread(s): SDaxpy Bandwidth (MB/s) is 248503.16
+30 Thread(s): SDaxpy Bandwidth (MB/s) is 307719.11
+31 Thread(s): SDaxpy Bandwidth (MB/s) is 313515.33
+32 Thread(s): SDaxpy Bandwidth (MB/s) is 319389.27
+33 Thread(s): SDaxpy Bandwidth (MB/s) is 323642.13
+34 Thread(s): SDaxpy Bandwidth (MB/s) is 329069.51
+35 Thread(s): SDaxpy Bandwidth (MB/s) is 332181.71
+36 Thread(s): SDaxpy Bandwidth (MB/s) is 338677.53
+37 Thread(s): SDaxpy Bandwidth (MB/s) is 344331.93
+38 Thread(s): SDaxpy Bandwidth (MB/s) is 348289.53
+39 Thread(s): SDaxpy Bandwidth (MB/s) is 350271.0
+40 Thread(s): SDaxpy Bandwidth (MB/s) is 356834.51
+41 Thread(s): SDaxpy Bandwidth (MB/s) is 361635.96
+42 Thread(s): SDaxpy Bandwidth (MB/s) is 365879.35
+43 Thread(s): SDaxpy Bandwidth (MB/s) is 369794.24
+44 Thread(s): SDaxpy Bandwidth (MB/s) is 374037.04
+45 Thread(s): SDaxpy Bandwidth (MB/s) is 377262.65
+46 Thread(s): SDaxpy Bandwidth (MB/s) is 381575.28
+47 Thread(s): SDaxpy Bandwidth (MB/s) is 385203.95
+48 Thread(s): SDaxpy Bandwidth (MB/s) is 388916.09
+
+
+Scaling results:
+┌───────────┬─────────────────────────┐
+│ # Threads │ SDaxpy Bandwidth (MB/s) │
+├───────────┼─────────────────────────┤
+│       1.0 │                 57259.3 │
+│       2.0 │                 90968.7 │
+│       3.0 │               1.16584e5 │
+│       4.0 │                1.3209e5 │
+│       5.0 │               1.40071e5 │
+│       6.0 │                1.4431e5 │
+│       7.0 │               1.48203e5 │
+│       8.0 │               1.44348e5 │
+│       9.0 │               1.44084e5 │
+│      10.0 │                144165.0 │
+│      11.0 │               1.44041e5 │
+│      12.0 │               1.44629e5 │
+│      13.0 │               1.52785e5 │
+│      14.0 │               1.61117e5 │
+│      15.0 │               1.69223e5 │
+│      16.0 │               1.76578e5 │
+│      17.0 │               1.83165e5 │
+│      18.0 │               1.89778e5 │
+│      19.0 │               1.96682e5 │
+│      20.0 │                202734.0 │
+│      21.0 │                2.0915e5 │
+│      22.0 │               2.14622e5 │
+│      23.0 │               2.20157e5 │
+│      24.0 │               2.25726e5 │
+│      25.0 │               2.30903e5 │
+│      26.0 │                235353.0 │
+│      27.0 │               2.38296e5 │
+│      28.0 │               2.44695e5 │
+│      29.0 │               2.48503e5 │
+│      30.0 │               3.07719e5 │
+│      31.0 │               3.13515e5 │
+│      32.0 │               3.19389e5 │
+│      33.0 │               3.23642e5 │
+│      34.0 │                3.2907e5 │
+│      35.0 │               3.32182e5 │
+│      36.0 │               3.38678e5 │
+│      37.0 │               3.44332e5 │
+│      38.0 │                3.4829e5 │
+│      39.0 │                350271.0 │
+│      40.0 │               3.56835e5 │
+│      41.0 │                361636.0 │
+│      42.0 │               3.65879e5 │
+│      43.0 │               3.69794e5 │
+│      44.0 │                374037.0 │
+│      45.0 │               3.77263e5 │
+│      46.0 │               3.81575e5 │
+│      47.0 │                385204.0 │
+│      48.0 │               3.88916e5 │
+└───────────┴─────────────────────────┘
+1 Thread(s): Triad Performance (MFlop/s) is 5223.62
+2 Thread(s): Triad Performance (MFlop/s) is 7814.48
+3 Thread(s): Triad Performance (MFlop/s) is 9492.37
+4 Thread(s): Triad Performance (MFlop/s) is 11072.45
+5 Thread(s): Triad Performance (MFlop/s) is 12371.67
+6 Thread(s): Triad Performance (MFlop/s) is 13391.61
+7 Thread(s): Triad Performance (MFlop/s) is 13848.98
+8 Thread(s): Triad Performance (MFlop/s) is 14178.59
+9 Thread(s): Triad Performance (MFlop/s) is 14238.98
+10 Thread(s): Triad Performance (MFlop/s) is 14282.18
+11 Thread(s): Triad Performance (MFlop/s) is 14308.33
+12 Thread(s): Triad Performance (MFlop/s) is 14314.19
+13 Thread(s): Triad Performance (MFlop/s) is 14926.81
+14 Thread(s): Triad Performance (MFlop/s) is 15490.52
+15 Thread(s): Triad Performance (MFlop/s) is 16035.71
+16 Thread(s): Triad Performance (MFlop/s) is 16532.37
+17 Thread(s): Triad Performance (MFlop/s) is 17009.24
+18 Thread(s): Triad Performance (MFlop/s) is 17419.42
+19 Thread(s): Triad Performance (MFlop/s) is 17817.58
+20 Thread(s): Triad Performance (MFlop/s) is 18168.3
+21 Thread(s): Triad Performance (MFlop/s) is 18502.23
+22 Thread(s): Triad Performance (MFlop/s) is 18797.8
+23 Thread(s): Triad Performance (MFlop/s) is 19098.77
+24 Thread(s): Triad Performance (MFlop/s) is 19368.06
+25 Thread(s): Triad Performance (MFlop/s) is 19602.15
+26 Thread(s): Triad Performance (MFlop/s) is 19832.85
+27 Thread(s): Triad Performance (MFlop/s) is 20074.5
+28 Thread(s): Triad Performance (MFlop/s) is 20300.09
+29 Thread(s): Triad Performance (MFlop/s) is 20552.79
+30 Thread(s): Triad Performance (MFlop/s) is 20763.66
+31 Thread(s): Triad Performance (MFlop/s) is 20951.06
+32 Thread(s): Triad Performance (MFlop/s) is 21121.02
+33 Thread(s): Triad Performance (MFlop/s) is 21305.48
+34 Thread(s): Triad Performance (MFlop/s) is 21483.14
+35 Thread(s): Triad Performance (MFlop/s) is 21607.94
+36 Thread(s): Triad Performance (MFlop/s) is 21784.71
+37 Thread(s): Triad Performance (MFlop/s) is 21937.04
+38 Thread(s): Triad Performance (MFlop/s) is 22066.51
+39 Thread(s): Triad Performance (MFlop/s) is 22164.55
+40 Thread(s): Triad Performance (MFlop/s) is 22331.14
+41 Thread(s): Triad Performance (MFlop/s) is 22474.92
+42 Thread(s): Triad Performance (MFlop/s) is 22591.42
+43 Thread(s): Triad Performance (MFlop/s) is 22699.56
+44 Thread(s): Triad Performance (MFlop/s) is 22826.42
+45 Thread(s): Triad Performance (MFlop/s) is 22912.04
+46 Thread(s): Triad Performance (MFlop/s) is 23025.95
+47 Thread(s): Triad Performance (MFlop/s) is 23117.77
+48 Thread(s): Triad Performance (MFlop/s) is 31486.25
+
+
+Scaling results:
+┌───────────┬─────────────────────────────┐
+│ # Threads │ Triad Performance (MFlop/s) │
+├───────────┼─────────────────────────────┤
+│       1.0 │                     5223.62 │
+│       2.0 │                     7814.48 │
+│       3.0 │                     9492.37 │
+│       4.0 │                     11072.5 │
+│       5.0 │                     12371.7 │
+│       6.0 │                     13391.6 │
+│       7.0 │                     13849.0 │
+│       8.0 │                     14178.6 │
+│       9.0 │                     14239.0 │
+│      10.0 │                     14282.2 │
+│      11.0 │                     14308.3 │
+│      12.0 │                     14314.2 │
+│      13.0 │                     14926.8 │
+│      14.0 │                     15490.5 │
+│      15.0 │                     16035.7 │
+│      16.0 │                     16532.4 │
+│      17.0 │                     17009.2 │
+│      18.0 │                     17419.4 │
+│      19.0 │                     17817.6 │
+│      20.0 │                     18168.3 │
+│      21.0 │                     18502.2 │
+│      22.0 │                     18797.8 │
+│      23.0 │                     19098.8 │
+│      24.0 │                     19368.1 │
+│      25.0 │                     19602.1 │
+│      26.0 │                     19832.8 │
+│      27.0 │                     20074.5 │
+│      28.0 │                     20300.1 │
+│      29.0 │                     20552.8 │
+│      30.0 │                     20763.7 │
+│      31.0 │                     20951.1 │
+│      32.0 │                     21121.0 │
+│      33.0 │                     21305.5 │
+│      34.0 │                     21483.1 │
+│      35.0 │                     21607.9 │
+│      36.0 │                     21784.7 │
+│      37.0 │                     21937.0 │
+│      38.0 │                     22066.5 │
+│      39.0 │                     22164.5 │
+│      40.0 │                     22331.1 │
+│      41.0 │                     22474.9 │
+│      42.0 │                     22591.4 │
+│      43.0 │                     22699.6 │
+│      44.0 │                     22826.4 │
+│      45.0 │                     22912.0 │
+│      46.0 │                     23025.9 │
+│      47.0 │                     23117.8 │
+│      48.0 │                     31486.2 │
+└───────────┴─────────────────────────────┘
