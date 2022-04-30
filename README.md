@@ -188,56 +188,6 @@ The package [`BLISBLAS.jl`](https://github.com/carstenbauer/BLISBLAS.jl) similar
 BLAS calls to the [blis](https://github.com/flame/blis) library, which has optimised kernel
 for A64FX.
 
-### Benchmarks
-
-_Suggested by Chris Elrod_
-
-Pure Julia:
-
-```julia
-julia> using BenchmarkTools, LinearAlgebra, Statistics
-
-julia> function axpy!(z,a,x,y)
-           @simd for i in eachindex(z,x,y)
-               @inbounds z[i] = muladd(a, x[i], y[i])
-           end
-       end
-axpy! (generic function with 1 method)
-
-julia> b = @benchmark axpy!(z, a, x, y) setup=(N=100; z=randn(N, N); a=randn(); x=randn(N,N); y=randn(N,N));
-
-julia> mean(b.times)
-3777.00815
-
-julia> median(b.times)
-3773.625
-
-julia> extrema(b.times)
-(3703.75, 4537.5)
-```
-
-vs vendor BLAS:
-
-```julia
-julia> BLAS.get_config()
-LinearAlgebra.BLAS.LBTConfig
-Libraries: 
-└ [ILP64] libfjlapackexsve_ilp64.so
-
-julia> b = @benchmark BLAS.axpy!(a, x, y) setup=(N=100; a=randn(); x=randn(N,N); y=randn(N,N));
-
-julia> mean(b.times)
-3354.0343875
-
-julia> median(b.times)
-3348.75
-
-julia> extrema(b.times)
-(3300.0, 4095.0)
-```
-
-Pure Julia implementation is within ~10-15% of the vendor BLAS.
-
 ## Building Julia from source
 
 ### with GCC
