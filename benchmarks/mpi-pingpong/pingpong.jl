@@ -34,7 +34,6 @@ function benchmark()
         file = open(joinpath(@__DIR__, "julia.csv"), "w")
         println(file, "# size (bytes),time (seconds),throughput (MB/s)")
     end
-    result = Tuple{Int,Float64}[]
 
     for s in [-Inf, (0:1:27)...]
         size = Int(exp2(s))
@@ -44,7 +43,6 @@ function benchmark()
             # Riken benchmarks seem to use decimal Megabytes, not binary Mibibytes
             throughput = bytes / 1e6 / time
             @show bytes, time, throughput
-            push!(result, (bytes, time))
             println(file, bytes, ",", time, ",", throughput)
         end
     end
