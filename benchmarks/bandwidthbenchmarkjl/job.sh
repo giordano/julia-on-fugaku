@@ -7,5 +7,4 @@
 
 # execute job
 export JULIA_LLVM_ARGS="-aarch64-sve-vector-bits-min=512"
-export JULIA_EXCLUSIVE=1
 julia --project=. --threads=48 bench.jl
