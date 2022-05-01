@@ -3,7 +3,8 @@ include(joinpath(@__DIR__, "common.jl"))
 using LinearAlgebra
 using BLISBLAS
 
-# Make sure we're using Fujitsu BLAS
+# Make sure we're using Blis.  NOTE: BLISBLAS doesn't clear OpenBLAS, so there is still a
+# chance we're using OpenBLAS (but it should be so slow that you'd notice)
 let
     blases = BLAS.get_config().loaded_libs
     blisblas = findfirst(x -> contains(x.libname, r"libblis.so$"), blases)
