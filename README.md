@@ -34,16 +34,6 @@ The login nodes you access via `login.fugaku.r-ccs.riken.jp` ([connection
 instructions](https://www.fugaku.r-ccs.riken.jp/doc_root/en/user_guides/use_latest/AccessToTheSystem/LoggingInToTheFugakuComputerWithLocalAccount.html))
 have Cascade Lake CPUs, so they aren't much useful if you want to run an aarch64 Julia.
 
-There is a Julia module built with Spack [available on the compute
-nodes](https://www.fugaku.r-ccs.riken.jp/doc_root/en/user_guides/UsingOSS/oss_e.html#packages-installed-on-the-compute-nodes),
-but I still haven't understood how to access the volume where Spack is installed from a
-compute node, please let me know if you do.  Anyway, as of this writing (2022-04-29) the
-version of Julia provided is 1.6.3, so you may want to download a more recent version from
-the [official website](https://julialang.org/downloads/).  Use the `aarch64` builds for
-Glibc Linux, preferably [latest
-stable](https://julialang.org/downloads/#current_stable_release) or even the [nightly
-build](https://julialang.org/downloads/nightlies/) if you feel confident.
-
 You can [submit jobs to the
 queue](https://www.fugaku.r-ccs.riken.jp/doc_root/en/user_guides/use_latest/JobExecution/Overview.html)
 to run Julia code, but this is cumbersone, especially if you need quick feedback during
@@ -54,6 +44,34 @@ for example with:
 ```
 pjsub --interact -L "node=1" -L "rscgrp=int" -L "elapse=30:00" --sparam "wait-time=600" --mpi "max-proc-per-node=4"
 ```
+
+## Available software
+
+Fugaku uses the [Spack package manager](https://spack.io/).  For more information about how
+to use it, see the [Fugaku Spack User
+Guide](https://www.fugaku.r-ccs.riken.jp/doc_root/en/user_guides/FugakuSpackGuide/).
+
+Note that Spack is installed in `/vol0004`, this means that if your home directory isn't
+mounted on this volume you will have to [explicitly request the
+partition](https://www.fugaku.r-ccs.riken.jp/en/operation/20211130_02) in your submission
+job scripts or commands, for example by adding `-x PJM_LLIO_GFSCACHE=/vol0004` to the
+`pjsub` command, or the line
+
+```sh
+#PJM -x PJM_LLIO_GFSCACHE=/vol0004
+ ```
+
+in a job script.
+
+## Using Julia on the compute nodes
+
+There is a Julia module built with Spack [available on the compute
+nodes](https://www.fugaku.r-ccs.riken.jp/doc_root/en/user_guides/UsingOSS/oss_e.html#packages-installed-on-the-compute-nodes),
+but as of this writing (2022-04-29) the version of Julia provided is 1.6.3, so you may want
+to download a more recent version from the [official
+website](https://julialang.org/downloads/).  Use the `aarch64` builds for Glibc Linux,
+preferably [latest stable](https://julialang.org/downloads/#current_stable_release) or even
+the [nightly build](https://julialang.org/downloads/nightlies/) if you feel confident.
 
 To enable full vectorisation you may need to set the environment variable
 `JULIA_LLVM_ARGS="-aarch64-sve-vector-bits-min=512"`.  Example:
