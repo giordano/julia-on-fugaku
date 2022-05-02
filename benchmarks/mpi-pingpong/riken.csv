@@ -1,6 +1,4 @@
-# Source: https://www.fugaku.r-ccs.riken.jp/doc_root/en/user_guides/perf/Perf-MPI.pdf
-
-# size (bytes),time (seconds),throughput (MB/s)
+size (bytes),time (seconds),throughput (MB/s) # Source: https://www.fugaku.r-ccs.riken.jp/doc_root/en/user_guides/perf/Perf-MPI.pdf
 0,1.05E-06,0
 1,1.08E-06,1
 2,1.07E-06,2

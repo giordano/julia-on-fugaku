@@ -32,18 +32,40 @@ function benchmark()
 
     if rank == 0
         file = open(joinpath(@__DIR__, "julia.csv"), "w")
-        println(file, "# size (bytes),time (seconds),throughput (MB/s)")
+        println(file, "size (bytes),time (seconds),throughput (MB/s)")
     end
 
-    for s in [-Inf, (0:1:27)...]
-        size = Int(exp2(s))
-        time = pingpong(T, size, 400)
-        if rank == 0
+    for s in -1:22
+        size = 1 << s
+        iters = 1 << (s < 10 ? 20 : 30 - s)
+        # Measure time on current rank
+        time = pingpong(T, size, iters)
+
+        if rank == 1
+            # If we are on rank 1, send to rank 0 our time
+            MPI.Send(time, comm; dest=0)
+        else
+            # Time on rank 0
+            time_0 = time
+            # Time on rank 1
+            time_1 = MPI.Recv(typeof(time), comm; source=1)
+            # Maximum of the times measured across all ranks
+            max_time = max(time_0, time_1)
+            # Aggregate time across all ranks
+            aggregate_time = time_0 + time_1
+
+            # Number of ranks
+            nranks = MPI.Comm_size(comm)
+            # Number of bytes trasmitted
             bytes = size * sizeof(T)
-            # Riken benchmarks seem to use decimal Megabytes, not binary Mibibytes
-            throughput = bytes / 1e6 / time
-            @show bytes, time, throughput
-            println(file, bytes, ",", time, ",", throughput)
+            # Latency
+            latency = aggregate_time / (2 * nranks)
+            # Throughput
+            throughput = (nranks * bytes) / max_time / 1e6
+
+            # Print out our results
+            @show bytes, latency, throughput
+            println(file, bytes, ",", latency, ",", throughput)
         end
     end
 
