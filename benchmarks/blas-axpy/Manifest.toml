@@ -18,8 +18,8 @@ uuid = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
 [[deps.BLISBLAS]]
 deps = ["LinearAlgebra", "blis_jll"]
 git-tree-sha1 = "cf6064af6edc2224549d9993bc143e15fe12ae0e"
-repo-rev = "main"
-repo-url = "https://github.com/carstenbauer/BLISBLAS.jl"
+repo-rev = "28a01a4b976a4f265e6c39f8ca96929375062fab"
+repo-url = "https://github.com/carstenbauer/BLISBLAS.jl.git"
 uuid = "6f275bd8-fec0-4d39-945b-7e95a765fa1e"
 version = "0.1.0"
 
@@ -185,8 +185,8 @@ version = "1.0.10+0"
 [[deps.FujitsuBLAS]]
 deps = ["Libdl", "LinearAlgebra"]
 git-tree-sha1 = "aa50510b5856dd159cd2eda8e04a1d894b22b572"
-repo-rev = "main"
-repo-url = "https://github.com/giordano/FujitsuBLAS.jl"
+repo-rev = "2f909948094f7c1f69d7e19a789713778c63f799"
+repo-url = "https://github.com/giordano/FujitsuBLAS.jl.git"
 uuid = "32aa7d10-2208-4269-9553-8a2b02007e37"
 version = "1.0.0"
 

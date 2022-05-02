@@ -5,3 +5,9 @@ DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
 FujitsuBLAS = "32aa7d10-2208-4269-9553-8a2b02007e37"
 Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
+
+[compat]
+BLISBLAS = "0.1.0"
+BenchmarkTools = "1.3.1"
+FujitsuBLAS = "1.0.0"
+Plots = "1.28.0"
