@@ -16,7 +16,7 @@ function plot_bench()
              )
     plot!(p, julia[:, 1], julia[:, 2]; label="MPI.jl", marker=:auto, markersize=3)
     plot!(p, riken[:, 1], riken[:, 2]; label="Riken-CCS", marker=:auto, markersize=3)
-    savefig(joinpath(@__DIR__, "ping-pong-time.pdf"))
+    savefig(joinpath(@__DIR__, "pingpong-time.pdf"))
 
     p = plot(;
              title = "Throughput of MPI PingPong",
@@ -29,7 +29,7 @@ function plot_bench()
              )
     plot!(p, julia[:, 1], julia[:, 3]; label="MPI.jl", marker=:auto, markersize=3)
     plot!(p, riken[:, 1], riken[:, 3]; label="Riken-CCS", marker=:auto, markersize=3)
-    savefig(joinpath(@__DIR__, "ping-pong-throughput.pdf"))
+    savefig(joinpath(@__DIR__, "pingpong-throughput.pdf"))
 
 end
 
