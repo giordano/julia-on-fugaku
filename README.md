@@ -76,7 +76,7 @@ the [nightly build](https://julialang.org/downloads/nightlies/) if you feel conf
 To enable full vectorisation you may need to set the environment variable
 `JULIA_LLVM_ARGS="-aarch64-sve-vector-bits-min=512"`.  Example:
 https://github.com/JuliaLang/julia/issues/40308#issuecomment-901478623.  However, note that
-are a couple of sever bugs when using 512-bit vectors:
+are a couple of severe bugs when using 512-bit vectors:
 
 * <https://github.com/JuliaLang/julia/issues/44401> (may be an upstream LLVM bug:
   <https://github.com/llvm/llvm-project/issues/53331>)
@@ -95,16 +95,55 @@ for A64FX with
 julia --project -e 'ENV["JULIA_MPI_BINARY"]="system"; ENV["JULIA_MPICC"]="mpifcc"; using Pkg; Pkg.build("MPI"; verbose=true)'
 ```
 
-Note: `mpifcc` is available only on the compute nodes.  On the login nodes that would be
+***Note #1***: `mpifcc` is available only on the compute nodes.  On the login nodes that would be
 `mpifccpx`, but this is the cross compiler running on Intel architecture, it's unlikely
 you'll run an `aarch64` Julia on there.  [Preliminary
 tests](https://github.com/JuliaParallel/MPI.jl/issues/539) show that `MPI.jl` should work
 mostly fine with Fujitsu MPI, but custom error handlers may not be available (read: trying
 to use them causes segmentation faults).
 
-***Note***: in `MPI.jl` v0.20 Fujitsu MPI is a known ABI (it's the same as OpenMPI) and
+***Note #2***: in `MPI.jl` v0.20 Fujitsu MPI is a known ABI (it's the same as OpenMPI) and
 there is nothing special to do to configure it apart from [choosing the system
 binaries](https://juliaparallel.org/MPI.jl/dev/configuration/#Configuration-2).
+
+***Note #3***: we recommend using `MPI.jl`'s wrapper of `mpiexec` to run MPI applications
+with Julia:
+[`mpiexecjl`](https://juliaparallel.org/MPI.jl/stable/configuration/#Julia-wrapper-for-mpiexec).
+
+### File system latency
+
+Fugaku has an advanced system to handle [parallel file system
+latency](https://www.fugaku.r-ccs.riken.jp/doc_root/en/user_guides/use_latest/LyeredStorageAndLLIO/index.html).
+In order.  In order to speed up parallel applications run through MPI you may want to
+distribute it to the cache area of the second-layer storage on the first-layer storage using
+[`llio_transfer`](https://www.fugaku.r-ccs.riken.jp/doc_root/en/user_guides/use_latest/LyeredStorageAndLLIO/TheSecondLayerStrage.html#common-file-distribution-function-llio-transfer).
+In particular, if you're using Julia, you likely want to distribute the `julia` executable
+itself together with its installation bundle.
+
+For example, assuming that you are using the official binaries from the website, instead of
+the Julia module provided by Spack, you can do the following:
+
+```sh
+# Directory for log of `llio_transfer` and its wrapper `dir_transfer`
+LOGDIR="${TMPDIR}/log"
+
+# Create the log directory if necessary
+mkdir -p "${LOGDIR}"
+
+# Get directory where Julia is placed
+JL_BUNDLE="$(dirname $(julia --startup-file=no -O0 --compile=min -e 'print(Sys.BINDIR)'))"
+
+# Move Julia installation to fast LLIO directory
+/home/system/tool/dir_transfer -l "${LOGDIR}" "${JL_BUNDLE}"
+
+# Do not write empty stdout/stderr files for MPI processes.
+export PLE_MPI_STD_EMPTYFILE=off
+
+mpiexecjl --project=. -np ... julia ...
+
+# Remove Julia installation directory from the cache.
+/home/system/tool/dir_transfer -p -l "${LOGDIR}" "${JL_BUNDLE}"
+```
 
 ## Reverse engineering Fujitsu compiler using LLVM output
 
@@ -203,7 +242,7 @@ julia> peakflops()
 ```
 
 The package [`BLISBLAS.jl`](https://github.com/carstenbauer/BLISBLAS.jl) similarly forwards
-BLAS calls to the [blis](https://github.com/flame/blis) library, which has optimised kernel
+BLAS calls to the [blis](https://github.com/flame/blis) library, which has optimised kernels
 for A64FX.
 
 ## Building Julia from source
