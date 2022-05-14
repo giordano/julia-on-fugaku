@@ -404,11 +404,11 @@ version = "0.20.0-dev"
 
 [[deps.MPIBenchmarks]]
 deps = ["MPI"]
-git-tree-sha1 = "cff457fbc51a37070d0887534bde0c010c722c78"
-repo-rev = "a3f4f7dbdf2ed806f175576ac021b5758ad4c5a2"
-repo-url = "https://github.com/JuliaParallel/MPIBenchmarks.jl"
+git-tree-sha1 = "cae818f8fe01083248a5572acb7617d289ae69a5"
+repo-rev = "6618c9a39de0e3f8d7aba864b51ecafb6218f8c9"
+repo-url = "https://github.com/JuliaParallel/MPIBenchmarks.jl.git"
 uuid = "357d3ff1-0a0b-4dea-8b18-618e57d74eb1"
-version = "0.1.0"
+version = "0.2.0"
 
 [[deps.MPICH_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl", "Pkg"]
