@@ -1,7 +1,7 @@
 #!/bin/bash
 #PJM -L "node=4x6x16:torus:strict-io"  # Number of node
 #PJM -L "rscgrp=small-torus"           # Specify resource group
-#PJM -L "elapse=2:00:00"               # Job run time limit value
+#PJM -L "elapse=3:00:00"               # Job run time limit value
 #PJM --mpi proc=1536                   # Number of MPI process
 #PJM -S                                # Direction of statistic information file output
 
