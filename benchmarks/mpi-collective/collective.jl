@@ -9,7 +9,7 @@ end
 # Collective benchmarks
 benchmark(IMBAllreduce())
 benchmark(IMBAlltoall(; max_size=2 ^ 20, iterations=alltoall_iterations))
-# benchmark(IMBGatherv())
+benchmark(IMBGatherv(; max_size=2 ^ 20, iterations=alltoall_iterations))
 # benchmark(IMBReduce())
 benchmark(OSUAllreduce())
 benchmark(OSUAlltoall(; max_size=2 ^ 20, iterations=alltoall_iterations))
