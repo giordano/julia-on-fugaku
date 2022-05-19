@@ -1,8 +1,7 @@
 using Plots, DelimitedFiles
 
-function plot_bench(name::String)
+function plot_bench(name::String; xlims=(1, 2 ^ 23))
     system = "Fugaku"
-    xlims = (1, 2 ^ 23)
     xticks = (exp2.(0:2:22), ["1 B",   "4 B",   "16 B",   "64 B",   "256 B",
                               "1 KiB", "4 KiB", "16 KiB", "64 KiB", "256 KiB",
                               "1 MiB", "4 MiB"])
@@ -29,3 +28,4 @@ function plot_bench(name::String)
 end
 
 plot_bench("Allreduce")
+plot_bench("Gatherv"; xlims=(1, 2 ^ 20.5))
