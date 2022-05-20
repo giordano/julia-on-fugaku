@@ -2,8 +2,8 @@ using Plots, DelimitedFiles
 
 function format_bytes(bytes)
     log2b = log2(bytes)
-    val = Int(exp2(mod(log2b, 10)))
-    unit = log2b ÷ 10
+    unit, val = divrem(log2b, 10)
+    val = Int(exp2(val))
     unit_string = if unit == 0
         " B"
     elseif unit == 1
