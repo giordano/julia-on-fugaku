@@ -7,7 +7,7 @@ function alltoall_iterations(::Type{T}, s::Int) where {T}
 end
 
 # Collective benchmarks
-benchmark(IMBAllreduce())
+benchmark(IMBAllreduce(Float32))
 benchmark(IMBAlltoall(; max_size=2 ^ 20, iterations=alltoall_iterations))
 benchmark(IMBGatherv(; max_size=2 ^ 20, iterations=alltoall_iterations))
 benchmark(IMBReduce(Float32))

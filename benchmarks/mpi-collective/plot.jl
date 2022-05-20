@@ -44,6 +44,6 @@ function plot_bench(name::String; xlims=(1, 2 ^ 23))
 
 end
 
-plot_bench("Allreduce")
+plot_bench("Allreduce"; xlims=(4, 2 ^ 22.5))
 plot_bench("Gatherv"; xlims=(1, 2 ^ 20.5))
 plot_bench("Reduce"; xlims=(4, 2 ^ 22.5))
