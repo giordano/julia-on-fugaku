@@ -1,10 +1,27 @@
 using Plots, DelimitedFiles
 
+function format_bytes(bytes)
+    log2b = log2(bytes)
+    val = Int(exp2(mod(log2b, 10)))
+    unit = log2b ÷ 10
+    unit_string = if unit == 0
+        " B"
+    elseif unit == 1
+        " KiB"
+    elseif unit == 2
+        " MiB"
+    elseif unit == 3
+        " GiB"
+    elseif unit == 4
+        " TiB"
+    end
+    return string(val) * unit_string
+end
+
 function plot_bench(name::String; xlims=(1, 2 ^ 23))
     system = "Fugaku"
-    xticks = (exp2.(0:2:22), ["1 B",   "4 B",   "16 B",   "64 B",   "256 B",
-                              "1 KiB", "4 KiB", "16 KiB", "64 KiB", "256 KiB",
-                              "1 MiB", "4 MiB"])
+    xticks_range = exp2.(log2(first(xlims)):2:log2(last(xlims)))
+    xticks = (xticks_range, format_bytes.(xticks_range))
 
     julia = readdlm(joinpath(@__DIR__, "julia_imb_$(lowercase(name)).csv"), ',', Float64; skipstart=1)
     riken = readdlm(joinpath(@__DIR__, "riken_imb_$(lowercase(name)).csv"), ',', Float64; skipstart=1)
@@ -29,3 +46,4 @@ end
 
 plot_bench("Allreduce")
 plot_bench("Gatherv"; xlims=(1, 2 ^ 20.5))
+plot_bench("Reduce"; xlims=(4, 2 ^ 22.5))
