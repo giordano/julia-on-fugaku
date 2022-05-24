@@ -404,8 +404,8 @@ version = "0.20.0-dev"
 
 [[deps.MPIBenchmarks]]
 deps = ["MPI"]
-git-tree-sha1 = "cae818f8fe01083248a5572acb7617d289ae69a5"
-repo-rev = "6618c9a39de0e3f8d7aba864b51ecafb6218f8c9"
+git-tree-sha1 = "bfa543cebca2d02654dd129db4dd596aed802353"
+repo-rev = "5bda9b9a1312c773ffee658e3f826d6565e0be56"
 repo-url = "https://github.com/JuliaParallel/MPIBenchmarks.jl.git"
 uuid = "357d3ff1-0a0b-4dea-8b18-618e57d74eb1"
 version = "0.2.0"
@@ -424,9 +424,9 @@ version = "0.1.1"
 
 [[deps.MPItrampoline_jll]]
 deps = ["Artifacts", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl", "Pkg"]
-git-tree-sha1 = "e2ca7ef59880dad0fedf27dedaa09fd97e1fde1f"
+git-tree-sha1 = "931198275c786d2a28f1dfccee0300dc50b13bcf"
 uuid = "f1f71cc9-e9ae-5b93-9b94-4fe0e1ad3748"
-version = "4.0.2+0"
+version = "4.0.2+1"
 
 [[deps.MacroTools]]
 deps = ["Markdown", "Random"]
