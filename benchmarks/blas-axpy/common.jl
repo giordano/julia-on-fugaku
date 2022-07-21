@@ -8,7 +8,7 @@ end
 
 function benchmark(axpy!, T::Type, file_prefix::String)
     open(joinpath(@__DIR__, "$(file_prefix)_$(T).csv"), "w") do file
-        println(file, "# length, minimum time (seconds), median time (seconds), mean time (seconds), maximum time (seconds)")
+        println(file, "# length, minimum time (nanoseconds), median time (nanoseconds), mean time (nanoseconds), maximum time (nanoseconds)")
         for N in round.(Int, exp10.(0:0.2:9))
             res = get_stats(axpy!, N, T)
             @show res

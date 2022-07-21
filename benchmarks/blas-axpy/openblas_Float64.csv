@@ -1,4 +1,4 @@
-# length, minimum time (seconds), median time (seconds), mean time (seconds), maximum time (seconds)
+# length, minimum time (nanoseconds), median time (nanoseconds), mean time (nanoseconds), maximum time (nanoseconds)
 1,190.0,240.0,1240.1031,9.983299e6
 2,160.0,200.0,205.895,1830.0
 3,180.0,230.0,865.2617,6.326643e6
