@@ -19,6 +19,6 @@ let
     @assert blases[armpl].interface === :ilp64
 end
 
-for T in (Float16, Float32, Float64)
+for T in (Float32, Float64)
     benchmark(BLAS.axpy!, T, "armpl")
 end
