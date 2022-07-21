@@ -1,10 +1,6 @@
 using Plots, DelimitedFiles
 
 julia_16 = readdlm(joinpath(@__DIR__, "julia_Float16.csv"), ',', Float64; skipstart=1)
-fujitsu_16 = readdlm(joinpath(@__DIR__, "fujitsu_Float16.csv"), ',', Float64; skipstart=1)
-blis_16 = readdlm(joinpath(@__DIR__, "blis_Float16.csv"), ',', Float64; skipstart=1)
-armpl_16 = readdlm(joinpath(@__DIR__, "armpl_Float16.csv"), ',', Float64; skipstart=1)
-openblas_16 = readdlm(joinpath(@__DIR__, "openblas_Float16.csv"), ',', Float64; skipstart=1)
 julia_32 = readdlm(joinpath(@__DIR__, "julia_Float32.csv"), ',', Float64; skipstart=1)
 fujitsu_32 = readdlm(joinpath(@__DIR__, "fujitsu_Float32.csv"), ',', Float64; skipstart=1)
 blis_32 = readdlm(joinpath(@__DIR__, "blis_Float32.csv"), ',', Float64; skipstart=1)
