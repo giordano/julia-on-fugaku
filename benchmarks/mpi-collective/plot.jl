@@ -18,7 +18,7 @@ function format_bytes(bytes)
     return string(val) * unit_string
 end
 
-function plot_bench(name::String; xlims=(1, 2 ^ 23))
+function plot_bench(name::String; xlims=(1, 2 ^ 23), ylims=(Inf, Inf))
     system = "Fugaku"
     xticks_range = exp2.(log2(first(xlims)):2:log2(last(xlims)))
     xticks = (xticks_range, format_bytes.(xticks_range))
@@ -34,6 +34,7 @@ function plot_bench(name::String; xlims=(1, 2 ^ 23))
              xlims,
              xticks,
              ylabel = "time [sec]",
+             ylims,
              yscale = :log10,
              legend=:topleft,
              )
@@ -44,6 +45,6 @@ function plot_bench(name::String; xlims=(1, 2 ^ 23))
 
 end
 
-plot_bench("Allreduce"; xlims=(4, 2 ^ 22.5))
+plot_bench("Allreduce"; xlims=(4, 2 ^ 22.5), ylims=(10 ^ -6, Inf))
 plot_bench("Gatherv"; xlims=(1, 2 ^ 20.5))
-plot_bench("Reduce"; xlims=(4, 2 ^ 22.5))
+plot_bench("Reduce"; xlims=(4, 2 ^ 22.5), ylims=(10 ^ -6, Inf))
