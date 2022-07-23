@@ -1,4 +1,4 @@
-# Julia on Fugaku (2022-04-29)
+# Julia on Fugaku (2022-07-23)
 
 _Note: many links refer to internal documentation which is accessible only to Fugaku users._
 
@@ -36,8 +36,8 @@ have Cascade Lake CPUs, so they aren't much useful if you want to run an aarch64
 
 You can [submit jobs to the
 queue](https://www.fugaku.r-ccs.riken.jp/doc_root/en/user_guides/use_latest/JobExecution/Overview.html)
-to run Julia code, but this is cumbersone, especially if you need quick feedback during
-development or debugging.  Instead, a better workflow consists of getting an [interactive
+to run Julia code on the A64FX compute nodes, but this can be cumbersone if you need quick
+feedback during development or debugging.  You can also request an [interactive
 node](https://www.fugaku.r-ccs.riken.jp/doc_root/en/user_guides/use_latest/JobExecution/InteractiveJob.html),
 for example with:
 
@@ -67,7 +67,7 @@ in a job script.
 
 There is a Julia module built with Spack [available on the compute
 nodes](https://www.fugaku.r-ccs.riken.jp/doc_root/en/user_guides/UsingOSS/oss_e.html#packages-installed-on-the-compute-nodes),
-but as of this writing (2022-04-29) the version of Julia provided is 1.6.3, so you may want
+but as of this writing (2022-07-23) the version of Julia provided is 1.6.3, so you may want
 to download a more recent version from the [official
 website](https://julialang.org/downloads/).  Use the `aarch64` builds for Glibc Linux,
 preferably [latest stable](https://julialang.org/downloads/#current_stable_release) or even
@@ -81,6 +81,11 @@ are a couple of severe bugs when using 512-bit vectors:
 * <https://github.com/JuliaLang/julia/issues/44401> (may be an upstream LLVM bug:
   <https://github.com/llvm/llvm-project/issues/53331>)
 * <https://github.com/JuliaLang/julia/issues/44263> (only in Julia v1.8+)
+
+***Note***: Julia v1.9, which is based on [LLVM
+14](https://community.arm.com/arm-community-blogs/b/tools-software-ides-blog/posts/llvm-14),
+is able to natively autovectorise code for A64FX _without_ having to set
+`JULIA_LLVM_ARGS`, side stepping the issues above altogether.
 
 ## MPI.jl
 
