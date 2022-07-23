@@ -9,6 +9,7 @@
 export OMP_NUM_THREADS=1
 
 # Use local installation of Spack, much more recent than the one available in the system.
+# NOTE: replace with the path where you have installed Spack v0.19.
 . ${DATADIR}/repo/spack/share/spack/setup-env.sh
 # Install OpenBLAS from local Spack environment
 spack -e spack-env install -j 40

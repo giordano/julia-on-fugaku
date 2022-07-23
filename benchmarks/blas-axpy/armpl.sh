@@ -8,7 +8,8 @@
 # execute job
 export OMP_NUM_THREADS=1
 
-# Load the module of ARM Performance Libraries
+# Load the module of ARM Performance Libraries.  NOTE: replace the argument of
+# `module use` with the path where you installed the ARM Performance Libraries.
 module use ${DATADIR}/arm-performance-libraries/modulefiles
 module load armpl/22.0.2_gcc-8.2
 
