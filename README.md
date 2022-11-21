@@ -2,6 +2,16 @@
 
 _Note: many links refer to internal documentation which is accessible only to Fugaku users._
 
+## Read the paper
+
+Benchmarks present in this repository have been published in the paper [Productivity meets
+Performance: Julia on A64FX](https://doi.org/10.1109/CLUSTER51413.2022.00072), presented at
+the 2022 IEEE International Conference on Cluster Computing (CLUSTER22), as part of the
+[Embracing Arm for High Performance Computing
+Workshop](https://arm-hpc-user-group.github.io/eahpc-2022/) (pre-print available on arXiv:
+[`2207.12762`](https://arxiv.org/abs/2207.12762)).  See the [`CITATION.bib`](./CITATION.bib)
+file for a BibTeX entry to cite the paper.
+
 ## Storage
 
 Before doing anything on Fugaku, be aware that there are [tight
@@ -239,7 +249,7 @@ julia> using FujitsuBLAS, LinearAlgebra
 
 julia> BLAS.get_config()
 LinearAlgebra.BLAS.LBTConfig
-Libraries: 
+Libraries:
 └ [ILP64] libfjlapackexsve_ilp64.so
 
 julia> peakflops()
@@ -302,7 +312,7 @@ Pkg  ────────────── 54.053634 seconds
 LazyArtifacts  ────  0.019103 seconds
 Stdlibs total  ────427.178257 seconds
 Sysimage built. Summary:
-Total ─────── 698.447219 seconds 
+Total ─────── 698.447219 seconds
 Base: ─────── 271.257337 seconds 38.8372%
 Stdlibs: ──── 427.178257 seconds 61.1611%
 [...]
@@ -374,7 +384,7 @@ Unfortunately, last time I tried, run this executable causes a segmentation faul
 
 ```
 (gdb) run
-Starting program: /vol0003/ra000019/a04463/repo/julia/julia 
+Starting program: /vol0003/ra000019/a04463/repo/julia/julia
 Missing separate debuginfos, use: yum debuginfo-install glibc-2.28-151.el8.aarch64
 [Thread debugging using libthread_db enabled]
 Using host libthread_db library "/lib64/libthread_db.so.1".
