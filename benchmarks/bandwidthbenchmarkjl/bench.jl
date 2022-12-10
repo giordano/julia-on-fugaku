@@ -1,6 +1,9 @@
 using BandwidthBenchmark
 using DataFrames
 using CSV
+using ThreadPinning
+
+pinthreads(:scatter; places=:numa)
 
 CSV.write(joinpath(@__DIR__, "bwbench.csv"), bwbench(; verbose=true))
 let
